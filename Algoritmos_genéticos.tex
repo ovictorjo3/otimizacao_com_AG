@@ -1,0 +1,634 @@
+\documentclass[mathserif, 10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{eulervm}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage {mathtools}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{animate}
+\usepackage{cancel}
+\pgfplotsset{compat=1.18}
+%\usepackage{utopia} %font utopia imported
+\usetheme{CambridgeUS} % padrão: CambridgeUS
+%\usecolortheme{dolphin}
+\setbeamertemplate{frametitle}[default][center]
+% set colors
+\definecolor{myNewColorA}{RGB}{50,100,65}
+%\definecolor{myNewcolorA}{RGB}{255,189,0}
+%\definecolor{myNewcolorA}{RGB}{80,80,00}
+\definecolor{vinioliva}{RGB}{80,80,00}
+\definecolor{viniverde}{RGB}{47, 79, 79}
+\definecolor{viniazul}{RGB}{0, 0, 255}
+\definecolor{gold}{RGB}{255, 215, 0}
+\definecolor{darkslateblue}{RGB}{72, 61, 139}
+\definecolor{bgcolor}{RGB}{25,25,35}
+\definecolor{textcolor}{RGB}{240,240,240}
+\definecolor{titlecolor}{RGB}{255,180,50}
+\definecolor{accentcolor}{RGB}{100,200,255}
+\definecolor{examplecolor}{RGB}{100,200,150}
+\definecolor{crimson}{RGB}{220, 20, 60}
+\definecolor{theoremcolor}{RGB}{180,150,255}
+%\setbeamercolor{background canvas}{bg=bgcolor}
+%%%%%%%
+%%%%%%%
+\setbeamercolor{block title}{fg=black,bg=accentcolor!80!black}
+\setbeamercolor{block titlelike}{fg=black,bg=accentcolor!80!black}
+\setbeamercolor{block body}{bg=bgcolor!90!black,fg=titlecolor}
+\setbeamercolor{block title alerted}{bg=darkslateblue, fg=white}
+\setbeamercolor{block body alerted}{bg=white, fg=black}
+\setbeamercolor*{block title example}{bg=brown, fg=white}
+\setbeamercolor*{block body example}{bg=black!02, fg=black}
+%\usebeamercolor[myNewColorA]{block title alerted}
+%\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667}
+
+%% Cores dos slides
+
+\setbeamercolor*{palette primary}{bg=titlecolor, fg = black} %cores slides. Cor original myNewColorA
+\setbeamercolor{frametitle}{bg=cyan!20!black, fg=titlecolor}
+%\setbeamercolor{frametitle}{bg=orange!75!black, fg=white}
+\setbeamercolor*{palette secondary}{bg=accentcolor!90!black, fg = white} %cores slides
+\setbeamercolor*{palette tertiary}{bg=bgcolor!90!black, fg = white} %cores slides
+\setbeamercolor*{titlelike}{fg=black}
+\setbeamercolor*{title}{fg=titlecolor,bg=bgcolor!90!black} % blocos dos títulos
+\setbeamercolor*{item}{bg=bgcolor!90!black,fg=accentcolor!90!black}
+\setbeamercolor*{caption name}{fg=cyan}
+\usefonttheme{professionalfonts}
+
+
+\usepackage{natbib}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\setbeamerfont{frametitle}{series=\bfseries}
+% Ambientes
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposição}
+\newtheorem{cor}{Corolário}
+\newtheorem{ex}{Exemplo}
+\newtheorem{obs}{Observação}
+%\newtheorem{definicao}{Defini\c{c}\~ao}
+% Ambiente de Definição sem numeração e com título customizável
+\newtheorem*{definicao*}{Defini\c{c}\~ao}
+\newenvironment{definicao}[1]{%
+	\begin{block}{Defini\c{c}\~ao – #1}%
+	}{%
+	\end{block}%
+}
+
+
+\newtheorem*{proposition*}{Proposição}
+\newenvironment{proposition}[1]{%
+	\begin{block}{Proposição – #1}%
+	}{%
+	\end{block}%
+}
+
+\setbeamertemplate{navigation symbols}{}
+%\newtheorem{teorema}{Teorema}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+%\newcommand{\R}{\mathbb{R}}
+\newcommand{\card}[1]{\left|#1\right|}
+\newcommand{\Rmais}{\Real^{+}}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left<#1\right>}
+\newcommand{\coc}[1]{\left(#1\right)}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\vezes}{\times}
+\newcommand{\ponto}{\cdot}
+\newcommand{\implica}{\Rightarrow}
+\newcommand{\volta}{\Leftarrow}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rm}{\mathbb{R}^m}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\cont}{\subset}
+\newcommand{\inter}{\cap}
+\newcommand{\refe}[1]{(\ref{#1})}
+\newcommand{\ttr}[1]{\textcolor{red}{#1}}
+\newcommand{\ttb}[1]{\textcolor{blue}{#1}}
+\newcommand{\cqd}{\hfill \rule{2mm}{2mm}}
+\newcommand{\xs}{x^{\star}}
+\newcommand{\Xs}{X^{\star}}
+\newcommand{\conv}[1]{\textrm{conv}(#1)}
+\newcommand{\Rmn}{\mathbb{R}^{m \times n}}
+%\newcommand{\N}{\mathbb{N}}
+\newcommand{\ii}{\mathbf{i}}
+\renewcommand{\sin}{\text{sen} \,}
+\newcommand{\jj}{\mathbf{j}}
+\newcommand{\kk}{\mathbf{k}}
+\newcommand{\rot}{\text{rot}}
+\setlength{\unitlength}{1cm}
+\newcommand{\tensor}{\otimes}
+\newcommand{\trace}[1]{\mbox{tr}\left( #1 \right)}
+\newcommand{\sn}{{\mathbb{S}}^{n}}
+\newcommand{\snm}{{\mathbb{S}}^{n}_{+}}
+\newcommand{\snmm}{{\mathbb{S}}^{n}_{++}}
+\newcommand{\stf}[1]{\structure{#1}}
+\newcommand{\tred}[1]{\textcolor{red}{#1}}
+\newcommand{\tblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\bcolor}[1]{\colorbox{gray!20}{\begin{minipage}{\textwidth}#1\end{minipage}}}
+
+%------------------------------------------------------------
+
+%\titlegraphic{\vspace{-0,7cm} %\includegraphics[height=2.0cm]{Figs/figura_1.png}} 
+
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{subtitle}{size=\Large}
+\setbeamerfont{author}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size={\normalsize}}
+\title[IFAM/CMC]{\textbf{Algoritmos Genéticos para minimização de funções: uma abordagem com apoio do excel}}
+
+\author[Prof. Dr. Tacildo de S. Araújo]{Joao Victor \& Tacildo Araújo}
+\date{\today}
+\titlegraphic{\includegraphics[width=0.3\textwidth]{imagens/logo_final.png}}
+
+
+\institute[]{Instituto Federal de Educação, Ciência e Tecnologia do Amazonas \\ Campus Manaus Centro }
+
+\date[\textcolor{white}{\today} ]
+{}
+\usepackage{libertinus}
+%------------------------------------------------------------
+%This block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+%\AtBeginSection[]
+%{
+%	  \begin{frame}
+%		    \frametitle{Contents}
+%		    \tableofcontents[currentsection]
+%		  \end{frame}
+%	}
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}\insertsectionhead\par%
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}
+%------------------------------------------------------------
+\Large
+\begin{document}
+\justifying
+	%The next statement creates the title page.
+\frame{\titlepage}
+
+% ============================================================
+% AULA — INTRODUÇÃO ÀS SÉRIES NUMÉRICAS
+% Conteúdos:
+% 1. Noção intuitiva de séries
+% 2. Exemplos didáticos
+% 3. Somas parciais
+% 4. Séries convergentes e divergentes
+% 5. Soma da série como limite das somas parciais
+% 6. Exemplos de séries convergentes e divergentes
+% 7. Teorema: se a série converge, então o termo geral tende a zero
+% ============================================================
+
+%------------------------------------------------
+\begin{frame}{Problema de otimização}
+	Queremos maximizar a função
+	\[
+	f(x)=1-x^2
+	\]
+	em um intervalo de busca, por exemplo,
+	\[
+	x\in[-2,2].
+	\]
+	
+	\pause
+	
+	\begin{block}{Observação}
+		Pela análise matemática usual, sabemos que o valor máximo ocorre em
+		\[
+		x=0,
+		\qquad
+		f(0)=1.
+		\]
+	\end{block}
+	
+	\pause
+	
+	A ideia aqui é ver como um \textbf{algoritmo genético} pode se aproximar desse máximo.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Ideia geral do algoritmo genético}
+	Um algoritmo genético trabalha com uma \alert{população} de soluções candidatas.
+	
+	\pause
+	
+	\begin{enumerate}
+		\item Gerar uma população inicial.
+		\item Avaliar a aptidão de cada indivíduo.
+		\item Selecionar os melhores.
+		\item Realizar cruzamento.
+		\item Aplicar mutação.
+		\item Formar nova geração.
+		\item Repetir o processo.
+	\end{enumerate}
+	
+	\pause
+	
+	\begin{block}{Intuição}
+		As soluções mais promissoras tendem a sobreviver e a produzir novas soluções ainda melhores.
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Representação por bits}
+	Cada solução é codificada por uma cadeia binária.
+	
+	\pause
+	
+	Usando \(n=4\) bits.
+	
+	\[
+	0000,\ 0001,\ 0010,\ \dots,\ 1111
+	\]
+	
+	\pause
+	
+	Como cada bit pode ser \(0\) ou \(1\), o número total de cromossomos possíveis é
+	\[
+	2^4=16.
+	\]
+	
+	\pause
+	
+	\begin{block}{Interpretação}
+		Com \(4\) bits, o algoritmo não enxerga todos os números reais do intervalo, mas apenas \(16\) valores possíveis.
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Como ler um cromossomo binário}
+	Cada cromossomo binário pode ser convertido em decimal.
+	
+	\vspace{0.3cm}
+	
+	Para \(4\) bits, os pesos são:
+	\[
+	2^3,\ 2^2,\ 2^1,\ 2^0
+	\quad\Rightarrow\quad
+	8,\ 4,\ 2,\ 1.
+	\]
+	
+	\pause
+	
+	\begin{exampleblock}{Exemplo 1}
+		\[
+		0110 = 0\cdot 8 + 1\cdot 4 + 1\cdot 2 + 0\cdot 1 = 6
+		\]
+	\end{exampleblock}
+	
+	\pause
+	
+	\begin{exampleblock}{Exemplo 2}
+		\[
+		1011 = 1\cdot 8 + 0\cdot 4 + 1\cdot 2 + 1\cdot 1 = 11
+		\]
+	\end{exampleblock}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Conversão do binário para o valor real \(x\)}
+	Depois de obter o valor decimal \(d\), fazemos a transformação linear
+	\[
+	x=a+\frac{d}{2^n-1}(b-a),
+	\]
+	onde:
+	\begin{itemize}
+		\item \(a\) é o extremo esquerdo do intervalo;
+		\item \(b\) é o extremo direito;
+		\item \(n\) é o número de bits;
+		\item \(d\) é o valor decimal do cromossomo.
+	\end{itemize}
+	
+	\pause
+	
+	No nosso caso:
+	\[
+	a=-2,\qquad b=2,\qquad n=4.
+	\]
+	
+	Logo,
+	\[
+	x=-2+\frac{d}{15}\cdot 4.
+	\]
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Exemplos de conversão}
+	\begin{align*}
+		0000 &\to d=0 \to x=-2+\frac{0}{15}\cdot 4=-2,\\[0.3cm]
+		0011 &\to d=3 \to x=-2+\frac{3}{15}\cdot 4=-1.2,\\[0.3cm]
+		0111 &\to d=7 \to x=-2+\frac{7}{15}\cdot 4\approx -0.1333,\\[0.3cm]
+		1111 &\to d=15 \to x=-2+\frac{15}{15}\cdot 4=2.
+	\end{align*}
+	
+	\pause
+	
+	\begin{block}{Importante}
+		Com \(4\) bits, os valores de \(x\) são discretos; isto é, pertencem a uma grade de \(16\) pontos.
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Função de aptidão}
+	Como queremos \textbf{maximizar} a função, podemos usar a própria função como aptidão:
+	\[
+	\text{fitness}=f(x)=1-x^2.
+	\]
+	
+	\pause
+	
+	Assim, quanto maior o valor de \(f(x)\), melhor o indivíduo.
+	
+	\pause
+	
+	\begin{exampleblock}{Exemplo}
+		Se \(x=-0.4\), então
+		\[
+		f(-0.4)=1-(-0.4)^2=1-0.16=0.84.
+		\]
+	\end{exampleblock}
+	
+	\pause
+	
+	\begin{alertblock}{Interpretação}
+		Os indivíduos com valores de \(x\) mais próximos de \(0\) tendem a ter maior aptidão.
+	\end{alertblock}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Tabela de alguns cromossomos}
+	\small
+	\begin{center}
+		\begin{tabular}{cccc}
+			\toprule
+			Cromossomo & Decimal \(d\) & Valor de \(x\) & Aptidão \(f(x)=1-x^2\) \\
+			\midrule
+			0000 & 0  & -2.0000   & -3.0000 \\
+			0011 & 3  & -1.2000   & -0.4400 \\
+			0110 & 6  & -0.4000   & 0.8400 \\
+			0111 & 7  & -0.1333   & 0.9822 \\
+			1000 & 8  & 0.1333    & 0.9822 \\
+			1010 & 10 & 0.6667    & 0.5556 \\
+			1011 & 11 & 0.9333    & 0.1289 \\
+			1111 & 15 & 2.0000    & -3.0000 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\pause
+	
+	Os melhores cromossomos são os mais próximos de \(x=0\), isto é, \texttt{0111} e \texttt{1000}.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Exemplo de população inicial}
+	Suponha a população inicial:
+	\[
+	0011,\quad 0110,\quad 1011,\quad 1110.
+	\]
+	
+	\pause
+	
+	\begin{center}
+		\begin{tabular}{cccc}
+			\toprule
+			Cromossomo & \(x\) & \(f(x)\) & Qualidade \\
+			\midrule
+			0011 & -1.2    & -0.44   & baixa \\
+			0110 & -0.4    & 0.84    & boa \\
+			1011 & 0.9333  & 0.1289  & média \\
+			1110 & 1.7333  & -2.0044 & muito baixa \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\pause
+	
+	Logo, os melhores indivíduos são:
+	\[
+	0110 \quad \text{e} \quad 1011.
+	\]
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Seleção}
+	Na etapa de seleção, escolhemos os indivíduos mais aptos para reproduzir.
+	
+	\pause
+	
+	No exemplo anterior, os pais serão:
+	\[
+	P_1=0110,
+	\qquad
+	P_2=1011.
+	\]
+	
+	\pause
+	
+	\begin{block}{Ideia}
+		Os indivíduos com maior aptidão têm maior chance de transmitir suas características para a próxima geração.
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Cruzamento com 1 corte}
+	Escolhemos um ponto de corte, por exemplo, após o segundo bit.
+	
+	\[
+	0110 = 01|\tred{10}
+	\]
+	\[
+	1011 = 10|\textcolor{green}{11}
+	\]
+	
+	\pause
+	
+	Trocando as partes à direita do corte, obtemos:
+	
+	\[
+	F_1=01\textcolor{green}{11},
+	\qquad
+	F_2=10\tred{10}.
+	\]
+	
+	\pause
+	
+	\begin{block}{Interpretação}
+		O cruzamento mistura informações dos pais para produzir novas soluções candidatas.
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Avaliando os filhos}
+	Vamos decodificar os filhos.
+	
+	\pause
+	
+	\textbf{Filho 1:} \texttt{0111}
+	\[
+	d=7,\qquad
+	x=-2+\frac{7}{15}\cdot 4\approx -0.1333
+	\]
+	\[
+	f(x)\approx 1-0.0178=0.9822
+	\]
+	
+	\pause
+	
+	\textbf{Filho 2:} \texttt{1010}
+	\[
+	d=10,\qquad
+	x=-2+\frac{10}{15}\cdot 4\approx 0.6667
+	\]
+	\[
+	f(x)\approx 1-0.4444=0.5556
+	\]
+	
+	\pause
+	
+	\begin{alertblock}{Conclusão}
+		O filho \texttt{0111} ficou melhor do que ambos os pais.
+	\end{alertblock}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Mutação}
+	A mutação altera aleatoriamente um bit do cromossomo.
+	
+	\pause
+	
+	Por exemplo:
+	\[
+	10\tred{1}0 \longrightarrow 10 \tred{0}0
+	\]
+	
+	\pause
+	
+	Convertendo:
+	\[
+	1000 \to d=8 \to x=-2+\frac{8}{15}\cdot 4\approx 0.1333
+	\]
+	
+	\[
+	f(0.1333)\approx 0.9822
+	\]
+	
+	\pause
+	
+	\begin{block}{Papel da mutação}
+		\begin{itemize}
+			\item manter diversidade genética;
+			\item explorar novas possibilidades;
+			\item evitar estagnação da população.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Nova geração}
+	Uma nova população possível é:
+	\[
+	0110,\quad 1011,\quad 0111,\quad 1000.
+	\]
+	
+	\pause
+	
+	\begin{center}
+		\begin{tabular}{cccc}
+			\toprule
+			Cromossomo & \(x\) & \(f(x)\) & Situação \\
+			\midrule
+			0110 & -0.4000 & 0.8400 & bom \\
+			1011 & 0.9333  & 0.1289 & médio \\
+			0111 & -0.1333 & 0.9822 & excelente \\
+			1000 & 0.1333  & 0.9822 & excelente \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\pause
+	
+	A população vai se aproximando dos valores que maximizam a função.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Por que o algoritmo se aproxima de \(x=0\)?}
+	A função
+	\[
+	f(x)=1-x^2
+	\]
+	é maior quando \(x\) está mais próximo de zero.
+	
+	\pause
+	
+	Logo:
+	\begin{itemize}
+		\item indivíduos com \(x\) perto de \(0\) têm maior aptidão;
+		\item esses indivíduos são mais selecionados;
+		\item seus descendentes tendem a permanecer em regiões boas;
+		\item a mutação pode refinar ainda mais a busca.
+	\end{itemize}
+	
+	\pause
+	
+	\begin{block}{Resultado esperado}
+		O algoritmo tende a privilegiar cromossomos que representam valores próximos de \(x=0\).
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Limitação da codificação com 4 bits}
+	Com \(4\) bits, temos apenas \(16\) pontos possíveis no intervalo \([-2,2]\).
+	
+	\pause
+	
+	O espaçamento entre dois valores consecutivos é
+	\[
+	\Delta x=\frac{2-(-2)}{2^4-1}=\frac{4}{15}\approx 0.2667.
+	\]
+	
+	\pause
+	
+	Isso significa que o valor \(x=0\) não está exatamente representado.
+	
+	\pause
+	
+	\begin{alertblock}{Consequência}
+		O algoritmo encontra uma \textbf{aproximação} do máximo real:
+		\[
+		x\approx -0.1333
+		\quad \text{ou} \quad
+		x\approx 0.1333,
+		\]
+		com
+		\[
+		f(x)\approx 0.9822.
+		\]
+	\end{alertblock}
+\end{frame}
+
+
+\end{document}
+
+
+
